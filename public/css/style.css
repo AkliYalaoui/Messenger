@@ -1,0 +1,436 @@
+/*Global Rules*/
+* {
+  margin: 0;
+  padding: 0;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+.flex-container {
+  display: flex;
+}
+
+/*Conversations Rules*/
+.conversations {
+  background-color: #242526;
+  padding: 10px;
+  flex: 1;
+  height: 100vh;
+  border-right: .5px solid #373839;
+  overflow-y: auto;
+  position: relative;
+}
+.conversations .setting{
+  position: absolute;
+  top: -100vh;
+  left: 0;
+  background-color: #000;
+  color: #fff;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  transition: all 500ms;
+}
+.conversations .setting.open{
+  top: 0;
+}
+.setting .nav-brand{
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: .5px solid #333;
+}
+.setting .nav-brand span{
+  cursor: pointer;
+}
+.setting .account-name{
+  text-align: center;
+  margin-top: 25px;
+  border-bottom: .5px solid #333;
+  padding-bottom: 10px;
+}
+.setting .account-name img{
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+.setting ul{
+  padding: 30px;
+}
+.setting li{
+  margin-bottom: 10px;
+  background-color: #242526;
+  padding: 10px;
+  border-radius: 10px;
+}
+.setting li:first-of-type{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.setting li i{
+  margin-right: 5px;
+}
+.setting a{
+  color: #fff;
+}
+.conversations header {
+  margin-bottom: 30px;
+  padding-top: 15px;
+}
+
+.conversations header h2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  margin-bottom: 15px;
+}
+.conversations header h2 i {
+  cursor: pointer;
+}
+
+.conversations form {
+  position: relative;
+  margin-top: 10px;
+}
+
+.conversations form input[type="text"] {
+  background-color: #3e4042;
+  border: none;
+  outline: none;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+  padding-left: 45px;
+  border-radius: 20px;
+  color: #fff;
+  display: block;
+  width: 100%;
+}
+@media (max-width:420px){
+  .friends-chatting footer form i:first-of-type{
+    display: none;
+  }
+}
+@media (max-width:320px){
+  .friends-chatting .chat-actions i:not(:last-of-type) {
+    display: none;
+  }
+}
+@media (max-width:380px){
+  .conversations{
+    padding: 1px;
+  }
+  .conversations .conversation img,
+  .friends-chatting header img{
+    height: 40px !important;
+    width: 40px !important;
+  }
+  .friends-chatting header{
+    padding: 5px 10px !important;
+  }
+  .friends-chatting *{
+    font-size: 13px !important;
+  }
+  .friends-chatting main .friend-bio img{
+    height: 50px !important;
+    width: 50px !important;
+  }
+  .friends-chatting footer form input[type="submit"],
+  .friends-chatting footer form i{
+    top: 11px !important;
+  }
+}
+@media (max-width:1060px){
+  .conversations .setting{
+    position: fixed;
+  }
+  .conversations{
+    flex: unset;
+  }
+  .conversations header h2{
+    justify-content: center;
+  }
+  .conversations header h2 span{
+    display: none;
+  }
+  .conversations form{
+    display: none;
+  }
+  .conversations .conversation{
+    text-align: center;
+  }
+  .conversations .conversation img{
+    margin-right: 0 !important;
+  }
+  .conversations .conversation .conversation-meta-data{
+    display: none;
+  }
+}
+.conversations form input[type="submit"],
+.conversations form i {
+  position: absolute;
+  color: #5d646c;
+  top: 7px;
+}
+
+.conversations form input[type="submit"] {
+  opacity: 0;
+  left: -5px;
+  cursor: pointer;
+}
+
+.conversations form i {
+  left: 10px;
+  pointer-events: none;
+  font-size: 25px;
+}
+
+.conversations .conversation {
+  display: flex;
+  align-items: center;
+  color: #fff;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 7px;
+}
+
+.conversations .conversation.active {
+  background-color: #18191a;
+}
+
+.conversations .conversation img {
+  height: 50px;
+  width: 50px;
+  background-color: #ccc;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.conversations .conversation .conversation-meta-data .friend-name {
+  font-weight: normal;
+  font-size: 16px;
+  color: #fff;
+}
+
+.conversations .conversation .conversation-meta-data span {
+  color: #7f7c79;
+}
+
+/*Chat Section Rules*/
+.friends-chatting {
+  flex: 3;
+  position: relative;
+  background-color: #18191a;
+  display: flex;
+  flex-direction: column;
+}
+
+.friends-chatting header {
+  background-color: #242526;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 10px 10px;
+  border-bottom: .5px solid #373839;
+}
+
+.friends-chatting .friend-meta-data {
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.friends-chatting .friend-meta-data img {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-color: #ccc;
+  margin-right: 10px;
+}
+
+.friends-chatting .chat-actions {
+  color: #0099ff;
+  font-size: 20px;
+}
+
+.friends-chatting .chat-actions i {
+  cursor: pointer;
+  margin-right: 8px;
+}
+
+.friends-chatting main {
+  overflow-y: auto;
+  padding: 20px;
+  height: calc(100vh - 140px);
+}
+
+.friends-chatting main .friend-bio {
+  display: flex;
+  align-items: center;
+  color: #fff;
+  margin-bottom: 40px;
+}
+
+.friends-chatting main .friend-bio img {
+  height: 70px;
+  width: 70px;
+  background-color: #ccc;
+  margin-right: 15px;
+}
+
+.friends-chatting main .friend-bio .bio-details {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+}
+
+.friends-chatting main .friend-bio .bio-details span:first-of-type {
+  font-size: 16px;
+  color: #244996;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.friends-chatting main .friend-bio .bio-details span:last-of-type {
+  margin-top: 5px;
+}
+
+.friends-chatting main .friend-bio .bio-details span:first-of-type:hover {
+  text-decoration: underline;
+}
+
+.discussion-start {
+  text-align: center;
+  color: #888;
+  font-weight: bolder;
+  margin-bottom: 30px;
+}
+
+.friends-chatting main .msg-you {
+  color: #fff;
+  width: max-content;
+  padding: 7px;
+  border-radius: 10px;
+  position: relative;
+  background-color: #373737;
+  margin-bottom: 50px;
+}
+
+.friends-chatting main .msg-me {
+  background-color: #0084ff;
+  color: #f6f3ff;
+  width: max-content;
+  padding: 7px;
+  border-radius: 10px;
+  position: relative;
+  margin-left: auto;
+  margin-bottom: 50px;
+}
+.friends-chatting main .msg-me span,
+.friends-chatting main .msg-you span{
+  position: absolute;
+  bottom: -27px;
+  color: #555;
+  display: block;
+  width: 150px;
+}
+.friends-chatting main .msg-me span {
+  right: -3px;
+}
+.friends-chatting main .msg-you span {
+  left: -3px;
+}
+
+.waiting-discuss {
+  padding:10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  text-align: center;
+}
+
+.waiting-discuss h2 {
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.waiting-discuss img {
+  height: 150px;
+  width: 150px;
+  background-color: #ccc;
+  border-radius: 50%;
+}
+
+.friends-chatting footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #242526;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-top: .5px solid #373839;
+}
+
+.friends-chatting footer i {
+  color: #0099ff;
+  font-size: 20px;
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+.friends-chatting footer form {
+  flex: 1;
+  position: relative;
+  padding-left: 20px;
+}
+
+.friends-chatting footer form input[type="text"] {
+  width: calc(100% - 40px);
+  padding: 10px 20px;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  background-color: #3e4042;
+  color: #fff;
+}
+
+.friends-chatting footer form input[type="submit"],
+.friends-chatting footer form i {
+  position: absolute;
+  top: 7px;
+  right: 0;
+}
+
+.friends-chatting footer form input[type="submit"] {
+  opacity: 0;
+  cursor: pointer;
+}
+
+.friends-chatting footer form i:first-of-type {
+  right: 50px;
+}
+
+.friends-chatting footer form i:last-of-type {
+  pointer-events: none;
+}
