@@ -6,6 +6,14 @@ const popup          = document.getElementById('popup');
 const darkMode       = document.getElementById('darkMode');
 const friend         = document.querySelector('#friends > a');
 const logout         = document.getElementById('logout');
+const colors         = Array.from(document.querySelectorAll("#discussion-icons span"));
+
+colors.forEach(clr => {
+  clr.addEventListener('click',function(){
+    localStorage.setItem('--icon-color',this.dataset.color);
+    document.documentElement.style.setProperty('--icon-color',this.dataset.color);
+  });
+});
 
 if(logout != null){
   logout.onclick = function(){
@@ -24,6 +32,9 @@ window.addEventListener('load',function(){
     document.documentElement.style.setProperty('--in-color',localStorage.getItem('--in-color'));
     document.documentElement.style.setProperty('--hover-color',localStorage.getItem('--hover-color'));
     document.documentElement.style.setProperty('--border-color',localStorage.getItem('--border-color'));
+  }
+  if(localStorage.getItem('--icon-color')){
+    document.documentElement.style.setProperty('--icon-color',localStorage.getItem('--icon-color'));
   }
   if(localStorage.getItem('mode') == "dark"){
     darkMode.checked = true;

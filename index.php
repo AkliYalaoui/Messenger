@@ -146,6 +146,12 @@
           <span>
           <i class="fas fa-video fa-fw"></i>Video Call
           </span>
+          <span id="discussion-icons">
+            <span data-color="#0099ff"></span>
+            <span data-color="#009688"></span>
+            <span data-color="#673ab7"></span>
+            <span data-color="#e91e63"></span>
+          </span>
         </div>
       </header>
       <main>

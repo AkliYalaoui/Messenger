@@ -12,6 +12,7 @@
   --in-color    : #f1f0f0;
   --hover-color : #f2f2f2;
   --border-color: #ddd;
+  --icon-color  : #0099ff;
 }
 * {
   margin: 0;
@@ -145,12 +146,6 @@ ul {
 @media (max-width:320px){
   .friends-chatting .chat-actions i:not(:last-of-type) {
     display: none;
-  }
-  .friends-chatting .pop-up{
-    display: flex !important;
-  }
-  .friends-chatting .pop-up.open{
-    right: 0;
   }
 }
 @media (max-width:380px){
@@ -290,7 +285,7 @@ ul {
 }
 
 .friends-chatting .chat-actions {
-  color: #0099ff;
+  color: var(--icon-color);
   font-size: 20px;
 }
 .friends-chatting .pop-up{
@@ -304,22 +299,49 @@ ul {
   transition: all 500ms;
   width: 170px;
   border-radius: 4px;
-  display: none;
+  display: flex;
   z-index: 4;
   box-shadow: 1px 1px 5px rgba(0, 0,0, .2), -1px -1px 5px rgba(0, 0,0, .2);
 }
+.friends-chatting .pop-up.open{
+  right: 0;
+}
 .friends-chatting .pop-up span i{
   margin-right: 5px;
-  color: #0099ff;
+  color: var(--icon-color);
   transition: all 400ms;
 }
-.friends-chatting .pop-up span:hover{
+.friends-chatting .pop-up > span:hover{
   background-color: #f8f8f8;
   padding-left: 20px !important;
 }
-.friends-chatting .pop-up span{
+.friends-chatting .pop-up > span{
   padding: 8px 10px;
   cursor: pointer;
+}
+.friends-chatting .pop-up > span:last-of-type{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.friends-chatting .pop-up > span:last-of-type span{
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+}
+
+.friends-chatting .pop-up > span:last-of-type span:first-of-type{
+  background-color: #0099ff;
+}
+.friends-chatting .pop-up > span:last-of-type span:nth-child(2){
+  background-color: #009688;
+}
+.friends-chatting .pop-up > span:last-of-type span:nth-child(3){
+  background-color: #673ab7;
+}
+.friends-chatting .pop-up > span:last-of-type span:last-of-type{
+  background-color: #e91e63;
 }
 .friends-chatting .chat-actions i {
   cursor: pointer;
@@ -385,7 +407,7 @@ ul {
 }
 
 .friends-chatting main .msg-me {
-  background-color: #0084ff;
+  background-color: var(--icon-color);
   color: #f6f3ff;
   width: max-content;
   padding: 7px;
@@ -443,7 +465,7 @@ ul {
 }
 
 .friends-chatting footer i {
-  color: #0099ff;
+  color: var(--icon-color);
   font-size: 20px;
   margin-right: 8px;
   cursor: pointer;
