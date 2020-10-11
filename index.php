@@ -26,7 +26,7 @@
         <ul>
           <li>
             <span><i class="fa fa-moon fa-fw"></i>Dark Mode</span>
-            <input type="checkbox">
+            <input type="checkbox" id="darkMode">
           </li>
           <li>
             <a href="#"><i class="fa fa-cog fa-fw"></i>Account Settings</a>
@@ -128,7 +128,15 @@
         <div class="chat-actions">
           <i class="fas fa-phone fa-fw"></i>
           <i class="fas fa-video fa-fw"></i>
-          <i class="fas fa-info-circle fa-fw"></i>
+          <i id="infoDiscussion" class="fas fa-info-circle fa-fw"></i>
+        </div>
+        <div id="popup" class="pop-up">
+          <span>
+            <i class="fas fa-phone fa-fw"></i>Messenger Call
+          </span>
+          <span>
+          <i class="fas fa-video fa-fw"></i>Video Call
+          </span>
         </div>
       </header>
       <main>

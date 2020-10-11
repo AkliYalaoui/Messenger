@@ -1,4 +1,18 @@
 /*Global Rules*/
+:root{
+  /* --msg-color: #18191a;
+  --bg-color: #242526;
+  --txt-color: #fff;
+  --in-color  : #373737;
+  --hover-color : #18191a;
+  --border-color: #373839; */
+  --msg-color   : #fff;
+  --bg-color    : #fff; 
+  --txt-color   : #000;
+  --in-color    : #f1f0f0;
+  --hover-color : #f2f2f2;
+  --border-color: #ddd;
+}
 * {
   margin: 0;
   padding: 0;
@@ -25,11 +39,11 @@ ul {
 
 /*Conversations Rules*/
 .conversations {
-  background-color: #242526;
+  background-color: var(--bg-color);
   padding: 10px;
   flex: 1;
   height: 100vh;
-  border-right: .5px solid #373839;
+  border-right: .5px solid var(--border-color);
   overflow-y: auto;
   position: relative;
 }
@@ -37,8 +51,8 @@ ul {
   position: absolute;
   top: -100vh;
   left: 0;
-  background-color: #000;
-  color: #fff;
+  background-color: var(--bg-color);
+  color: var(--txt-color);
   width: 100%;
   height: 100%;
   z-index: 10;
@@ -52,7 +66,7 @@ ul {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: .5px solid #333;
+  border-bottom: .5px solid var(--border-color);
 }
 .setting .nav-brand span{
   cursor: pointer;
@@ -60,7 +74,7 @@ ul {
 .setting .account-name{
   text-align: center;
   margin-top: 25px;
-  border-bottom: .5px solid #333;
+  border-bottom: .5px solid var(--border-color);
   padding-bottom: 10px;
 }
 .setting .account-name img{
@@ -74,7 +88,7 @@ ul {
 }
 .setting li{
   margin-bottom: 10px;
-  background-color: #242526;
+  background-color: var(--hover-color);
   padding: 10px;
   border-radius: 10px;
 }
@@ -87,7 +101,7 @@ ul {
   margin-right: 5px;
 }
 .setting a{
-  color: #fff;
+  color: var(--txt-color);
 }
 .conversations header {
   margin-bottom: 30px;
@@ -98,7 +112,7 @@ ul {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #fff;
+  color: var(--txt-color);
   margin-bottom: 15px;
 }
 .conversations header h2 i {
@@ -111,7 +125,7 @@ ul {
 }
 
 .conversations form input[type="text"] {
-  background-color: #3e4042;
+  background-color: var(--in-color);
   border: none;
   outline: none;
   padding-top: 10px;
@@ -119,7 +133,7 @@ ul {
   padding-right: 10px;
   padding-left: 45px;
   border-radius: 20px;
-  color: #fff;
+  color: var(--txt-color);
   display: block;
   width: 100%;
 }
@@ -131,6 +145,12 @@ ul {
 @media (max-width:320px){
   .friends-chatting .chat-actions i:not(:last-of-type) {
     display: none;
+  }
+  .friends-chatting .pop-up{
+    display: flex !important;
+  }
+  .friends-chatting .pop-up.open{
+    right: 0;
   }
 }
 @media (max-width:380px){
@@ -205,14 +225,15 @@ ul {
 .conversations .conversation {
   display: flex;
   align-items: center;
-  color: #fff;
+  color: var(--txt-color);
   cursor: pointer;
   padding: 5px;
   border-radius: 7px;
 }
 
-.conversations .conversation.active {
-  background-color: #18191a;
+.conversations .conversation.active,
+.conversations .conversation:hover {
+  background-color: var(--hover-color);
 }
 
 .conversations .conversation img {
@@ -226,7 +247,7 @@ ul {
 .conversations .conversation .conversation-meta-data .friend-name {
   font-weight: normal;
   font-size: 16px;
-  color: #fff;
+  color: var(--txt-color);
 }
 
 .conversations .conversation .conversation-meta-data span {
@@ -237,22 +258,23 @@ ul {
 .friends-chatting {
   flex: 3;
   position: relative;
-  background-color: #18191a;
+  background-color: var(--msg-color);
   display: flex;
   flex-direction: column;
 }
 
 .friends-chatting header {
-  background-color: #242526;
+  background-color: var(--bg-color);
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 15px 10px 10px;
-  border-bottom: .5px solid #373839;
+  border-bottom: .5px solid var(--border-color);
+  position: relative;
 }
 
 .friends-chatting .friend-meta-data {
-  color: #fff;
+  color: var(--txt-color);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -270,7 +292,34 @@ ul {
   color: #0099ff;
   font-size: 20px;
 }
-
+.friends-chatting .pop-up{
+  background-color: #fff;
+  color: #000;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top:51px;
+  right: -200px;
+  transition: all 500ms;
+  width: 170px;
+  border-radius: 4px;
+  display: none;
+  z-index: 4;
+  box-shadow: 1px 1px 5px rgba(0, 0,0, .2), -1px -1px 5px rgba(0, 0,0, .2);
+}
+.friends-chatting .pop-up span i{
+  margin-right: 5px;
+  color: #0099ff;
+  transition: all 400ms;
+}
+.friends-chatting .pop-up span:hover{
+  background-color: #f8f8f8;
+  padding-left: 20px !important;
+}
+.friends-chatting .pop-up span{
+  padding: 8px 10px;
+  cursor: pointer;
+}
 .friends-chatting .chat-actions i {
   cursor: pointer;
   margin-right: 8px;
@@ -285,7 +334,7 @@ ul {
 .friends-chatting main .friend-bio {
   display: flex;
   align-items: center;
-  color: #fff;
+  color: var(--txt-color);
   margin-bottom: 40px;
 }
 
@@ -325,12 +374,12 @@ ul {
 }
 
 .friends-chatting main .msg-you {
-  color: #fff;
+  color: var(--txt-color);
   width: max-content;
   padding: 7px;
   border-radius: 10px;
   position: relative;
-  background-color: #373737;
+  background-color: var(--in-color);
   margin-bottom: 50px;
 }
 
@@ -369,7 +418,7 @@ ul {
 }
 
 .waiting-discuss h2 {
-  color: #fff;
+  color: var(--txt-color);
   margin-bottom: 20px;
 }
 
@@ -385,11 +434,11 @@ ul {
   bottom: 0;
   left: 0;
   width: 100%;
-  background-color: #242526;
+  background-color: var(--bg-color);
   display: flex;
   align-items: center;
   padding: 10px;
-  border-top: .5px solid #373839;
+  border-top: .5px solid var(--border-color);
 }
 
 .friends-chatting footer i {
@@ -411,8 +460,8 @@ ul {
   border: none;
   outline: none;
   border-radius: 10px;
-  background-color: #3e4042;
-  color: #fff;
+  background-color: var(--in-color);
+  color: var(--txt-color);
 }
 
 .friends-chatting footer form input[type="submit"],
