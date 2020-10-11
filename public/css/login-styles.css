@@ -1,3 +1,17 @@
+:root{
+  /* --msg-color: #18191a;
+  --bg-color: #242526;
+  --txt-color: #fff;
+  --in-color  : #373737;
+  --hover-color : #18191a;
+  --border-color: #373839; */
+  --msg-color   : #fff;
+  --bg-color    : #fff; 
+  --txt-color   : #000;
+  --in-color    : #f1f0f0;
+  --hover-color : #f2f2f2;
+  --border-color: #ddd;
+}
 *,*::after,*::before{
   margin: 0;
   padding: 0;
@@ -10,7 +24,7 @@ body{
   font-family: 'Roboto', sans-serif;
   display: flex;
   min-height: 100vh;
-  background-color: #111;
+  background-color: var(--msg-color);
 }
 .login-container{
   margin: auto;
@@ -19,7 +33,8 @@ body{
   padding: 20px 10px;
   border-radius: 10px;
   text-align: center;
-  background-color: #242526;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, .1),-1px -1px 5px rgba(0, 0, 0, .1);
+  background-color: var(--in-color);
 }
 .login-container i{
   color: #0084ff;
@@ -28,7 +43,7 @@ body{
 .login-container form{
   display: flex;
   flex-direction: column;
-  color: #fff;
+  color: var(--txt-color);
   padding: 15px;
   margin-top: 20px;
   text-align: start;
@@ -50,10 +65,10 @@ body{
   font-size: 18px;
 }
 .error{
-  color: #fff;
+  color: var(--txt-color);
   padding: 10px;
-  background-color: #242526;
-  border: 1px solid #333;
+  background-color: var(--in-color);
+  border: 1px solid var(--border-color);
   border-radius: 7px;
   position: absolute;
   top: 30px;

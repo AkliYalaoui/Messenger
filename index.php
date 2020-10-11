@@ -16,7 +16,7 @@
     if(isset($_SESSION['username'])){
   ?>
   <div class="flex-container">
-    <aside class="conversations">
+    <aside id="conversations" class="conversations">
       <nav class="setting" id="settings">
         <h2 class="nav-brand">Settings<span id="close-settings">&times;</span></h2>
         <div class="account-name">
@@ -32,7 +32,7 @@
             <a href="#"><i class="fa fa-cog fa-fw"></i>Account Settings</a>
           </li>
           <li>
-            <a href="logout.php"><i class="fa fa-sign-out-alt fa-fw"></i>Logout</a>
+            <a id="logout" href="logout.php"><i class="fa fa-sign-out-alt fa-fw"></i>Logout</a>
           </li>
         </ul>
       </nav>
@@ -40,12 +40,13 @@
         <h2><span>Discussions</span><i id="open-settings" class="fas fa-cog fa-fw"></i></h2>
         <!--Send Request To Api Later-->
         <form>
-          <input type="text" placeholder="Search in messenger">
-          <input type="submit" value="search">
+          <input id="searchfriend" type="text" placeholder="Search in messenger">
+          <input id="uidhidden" type="hidden" value="<?= $_SESSION['userid'] ?>">
+          <input type="submit" value="search" name="rqst">
           <i class="fab fa-searchengin fa-fw"></i>
         </form>
       </header>
-      <main>
+      <main id="friends">
         <?php
           try{
             $con = new PDO("mysql:host=localhost;dbname=messenger","root","");    
@@ -81,7 +82,9 @@
           }
         ?>
         <!--Get Dynamic Conversations from api Later-->
-        <?php foreach($allUsers as $user):?>
+        <?php 
+        if(!empty($allUsers)){
+        foreach($allUsers as $user):?>
         <a href="?id=<?= $user['id'] ?>">
           <div class="conversation">
             <img src="<?= $user['avatar']?>">
@@ -98,19 +101,25 @@
                   header("Location: index.php");
                   exit();
                 }
+                $tmp = explode(" ",$metaData['send_at']);
               ?>
-              <span class="last-msg"><?= $metaData['content'] ?></span>.
-              <span class="time"><?= $metaData['send_at'] ?></span>
+              <div class="last-msg"><?= strlen(substr($metaData['content'],0,10)) < strlen($metaData['content'])  ? substr($metaData['content'],0,10)." ...":substr($metaData['content'],0,10) ?></div>
+              <span class="time"><?= $tmp[0]  ?></span>
+              <span class="time"><?= $tmp[1]  ?></span>
             </div>
           </div>
         </a>
-        <?php endforeach; ?>
+        <?php endforeach; }
+          else{
+            echo "<div style='text-align:center; padding:10px; color:var(--txt-color);'>You have not made any friends yet </div>";
+          }
+          ?>
       </main>
     </aside>
     <section class="friends-chatting">
       <?php
       
-      if(isset($_GET['id']) && is_numeric($_GET['id'])){
+      if(isset($_GET['id']) && is_numeric($_GET['id']) && intval($_GET['id']) != $_SESSION['userid']){
         $id = intval($_GET['id']);
         $stmt = $con->prepare("SELECT * FROM users WHERE id=?");
         if($stmt->execute(array($id)) && $stmt->rowCount() != 0){
@@ -157,7 +166,8 @@
               header("Location: index.php");
               exit();
             }
-            echo $firtDisc[0];
+            if(isset($firtDisc[0]))
+                echo $firtDisc[0];
           ?>
         </div>
         <div id="main-conversation" data-from="<?= $id ?>" data-to="<?= $_SESSION['userid'] ?>"></div>
@@ -195,6 +205,7 @@
   ?>
   <script src="public/js/app.js"></script>
   <script src="public/js/chat.js"></script>
+  <script src="public/js/search.js"></script>
 </body>
 
 </html>

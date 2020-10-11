@@ -249,9 +249,10 @@ ul {
   font-size: 16px;
   color: var(--txt-color);
 }
-
-.conversations .conversation .conversation-meta-data span {
+.conversations .conversation .conversation-meta-data span,
+.conversations .conversation .conversation-meta-data div {
   color: #7f7c79;
+  font-size: 14px;
 }
 
 /*Chat Section Rules*/

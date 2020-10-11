@@ -55,6 +55,16 @@
       <input type="submit" value="Login" name="login">
     </form>
   </div>
+  <script>
+      if(localStorage.getItem('enabled')){
+        document.documentElement.style.setProperty('--msg-color',localStorage.getItem('--msg-color'));
+        document.documentElement.style.setProperty('--bg-color',localStorage.getItem('--bg-color'));
+        document.documentElement.style.setProperty('--txt-color',localStorage.getItem('--txt-color'));
+        document.documentElement.style.setProperty('--in-color',localStorage.getItem('--in-color'));
+        document.documentElement.style.setProperty('--hover-color',localStorage.getItem('--hover-color'));
+        document.documentElement.style.setProperty('--border-color',localStorage.getItem('--border-color'));
+      }
+  </script>
   <?php
     }
   ?>

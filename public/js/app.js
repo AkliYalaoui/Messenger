@@ -4,7 +4,18 @@ const settings       = document.getElementById('settings');
 const infoDiscussion = document.getElementById('infoDiscussion');
 const popup          = document.getElementById('popup');
 const darkMode       = document.getElementById('darkMode');
+const friend         = document.querySelector('#friends > a');
+const logout         = document.getElementById('logout');
 
+if(logout != null){
+  logout.onclick = function(){
+    sessionStorage.clear();
+  }
+}
+if(friend != null && !sessionStorage.getItem('now')){
+  friend.click();
+  sessionStorage.setItem('now',true);
+}
 window.addEventListener('load',function(){
   if(localStorage.getItem('enabled')){
     document.documentElement.style.setProperty('--msg-color',localStorage.getItem('--msg-color'));
@@ -52,6 +63,9 @@ darkMode.addEventListener('change',function(){
   }
 });
 
-infoDiscussion.addEventListener('click',_=> popup.classList.toggle('open'));
-closeSettings.addEventListener('click',_=> settings.classList.remove('open'));
-openSettings.addEventListener('click',_=> settings.classList.add('open'));
+if(infoDiscussion != null)
+  infoDiscussion.addEventListener('click',_=> popup.classList.toggle('open'));
+if(closeSettings != null)  
+  closeSettings.addEventListener('click',_=> settings.classList.remove('open'));
+if(openSettings != null)
+  openSettings.addEventListener('click',_=> settings.classList.add('open'));
