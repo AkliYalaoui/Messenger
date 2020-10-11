@@ -6,7 +6,7 @@ if(mainConversation != null){
   };
   setInterval(function(){
     getMsg();
-  },1000);
+  },2000);
   
   function getMsg(){
     const xhr = new XMLHttpRequest;
@@ -25,7 +25,7 @@ if(mainConversation != null){
     let div;
     let p;
     let span;
-  
+    let heart;
     for(let mg of msg){
   
         div = document.createElement('div');
@@ -34,6 +34,36 @@ if(mainConversation != null){
   
         div.className = mg.class;
         p.appendChild(document.createTextNode(mg.msg));
+        p.setAttribute('data-id',mg.id);
+
+        if(mg.love == 1){
+          heart = document.createElement('span');
+          heart.innerHTML = "&hearts;";
+          heart.className = "heart";
+          div.appendChild(heart);
+        }
+        p.addEventListener('dblclick',function(){
+          const xhr = new XMLHttpRequest;
+          let id = this.getAttribute('data-id');
+          xhr.onload = function(){
+            if(xhr.status == 200){
+              console.log("good");
+            }
+          }
+          xhr.open("POST","backend/postlove.php",true);
+          xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+          let heart = this.parentElement.querySelector('.heart');
+          if(heart != null){
+            heart.remove();
+            xhr.send(`m_id=${id}&love=0`);
+          }else{
+            heart = document.createElement('span');
+            heart.innerHTML = "&hearts;";
+            heart.className = "heart";
+            this.parentElement.appendChild(heart);
+            xhr.send(`m_id=${id}&love=1`);
+          }
+        });
         span.appendChild(document.createTextNode(mg.date));
   
         div.appendChild(p);

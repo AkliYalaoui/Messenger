@@ -7,7 +7,14 @@ const darkMode       = document.getElementById('darkMode');
 const friend         = document.querySelector('#friends > a');
 const logout         = document.getElementById('logout');
 const colors         = Array.from(document.querySelectorAll("#discussion-icons span"));
+const shrinkConver   = document.getElementById('shrink-conver');
+const conversations  = document.getElementById('conversations');
 
+shrinkConver.addEventListener('click',function(){
+  this.classList.toggle("fa-arrow-right");
+  this.classList.toggle("fa-arrow-left");
+  conversations.classList.toggle('expand');
+});
 colors.forEach(clr => {
   clr.addEventListener('click',function(){
     localStorage.setItem('--icon-color',this.dataset.color);
@@ -79,4 +86,7 @@ if(infoDiscussion != null)
 if(closeSettings != null)  
   closeSettings.addEventListener('click',_=> settings.classList.remove('open'));
 if(openSettings != null)
-  openSettings.addEventListener('click',_=> settings.classList.add('open'));
+  openSettings.addEventListener('click',_=> {
+    conversations.classList.toggle('expand');
+    settings.classList.add('open');
+  });

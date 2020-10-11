@@ -15,4 +15,3 @@ session_start();
       exit();
     }
   }
-?>

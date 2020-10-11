@@ -1,6 +1,6 @@
 const searchfriend  = document.getElementById('searchfriend');
 const friends       = document.getElementById('friends');
-const conversations = document.getElementById('conversations');
+// const conversations = document.getElementById('conversations');
 const form = searchfriend.parentElement;
 const mainDiv = document.createElement('div');
 const uidhidden = document.getElementById('uidhidden');

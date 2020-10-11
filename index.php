@@ -37,6 +37,7 @@
         </ul>
       </nav>
       <header>
+        <i id="shrink-conver" class="fa fa-arrow-right fa-lg"></i>
         <h2><span>Discussions</span><i id="open-settings" class="fas fa-cog fa-fw"></i></h2>
         <!--Send Request To Api Later-->
         <form>
@@ -85,7 +86,7 @@
         <?php 
         if(!empty($allUsers)){
         foreach($allUsers as $user):?>
-        <a href="?id=<?= $user['id'] ?>">
+        <a href="?id=<?= $user['id'] ?>" title="<?= $user['username'] ?>">
           <div class="conversation">
             <img src="<?= $user['avatar']?>">
             <div class="conversation-meta-data">

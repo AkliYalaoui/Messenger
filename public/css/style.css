@@ -24,6 +24,7 @@
 
 body {
   font-family: 'Roboto', sans-serif;
+  overflow-x: hidden;
 }
 
 a {
@@ -46,6 +47,7 @@ ul {
   height: 100vh;
   border-right: .5px solid var(--border-color);
   overflow-y: auto;
+  overflow-x: hidden;
   position: relative;
 }
 .conversations .setting{
@@ -172,14 +174,26 @@ ul {
     top: 11px !important;
   }
 }
+#shrink-conver{
+  color: var(--txt-color);
+  display: none;
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  top: 20px;
+}
 @media (max-width:1060px){
-  .conversations .setting{
-    position: fixed;
+  #shrink-conver{
+    display: inline;
   }
+  /* .conversations .setting{
+    position: fixed;
+  } */
   .conversations{
     flex: unset;
   }
   .conversations header h2{
+    margin-top: 40px;
     justify-content: center;
   }
   .conversations header h2 span{
@@ -196,6 +210,29 @@ ul {
   }
   .conversations .conversation .conversation-meta-data{
     display: none;
+  }
+  .conversations.expand{
+    flex: 1;
+    min-width: 250px;
+  }
+  .conversations.expand header h2{
+    margin-top: 40px;
+    justify-content: space-between;
+  }
+  .conversations.expand header h2 span{
+    display: inline-block;
+  }
+  .conversations.expand form{
+    display: block;
+  }
+  .conversations.expand .conversation{
+    text-align: start;
+  }
+  .conversations.expand .conversation img{
+    margin-right: 10px !important;
+  }
+  .conversations.expand .conversation .conversation-meta-data{
+    display: block;
   }
 }
 .conversations form input[type="submit"],
@@ -395,7 +432,20 @@ ul {
   font-weight: bolder;
   margin-bottom: 30px;
 }
-
+.msg-me .heart{
+  position: absolute;
+  bottom: -20px;
+  right: 35px !important;
+  color: red;
+  font-size: 30px;
+}
+.msg-you .heart{
+  position: absolute;
+  bottom: -20px;
+  left:  35px !important;
+  color: red;
+  font-size: 30px;
+}
 .friends-chatting main .msg-you {
   color: var(--txt-color);
   width: max-content;
@@ -416,13 +466,17 @@ ul {
   margin-left: auto;
   margin-bottom: 50px;
 }
-.friends-chatting main .msg-me span,
-.friends-chatting main .msg-you span{
+.friends-chatting main .msg-me span:not(.heart),
+.friends-chatting main .msg-you span:not(.heart){
   position: absolute;
-  bottom: -27px;
+  bottom: -37px;
   color: #555;
   display: block;
   width: 150px;
+}
+.friends-chatting main .msg-me p,
+.friends-chatting main .msg-you p{
+  user-select: none;
 }
 .friends-chatting main .msg-me span {
   right: -3px;
