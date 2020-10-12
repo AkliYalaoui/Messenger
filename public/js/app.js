@@ -13,20 +13,23 @@ const attachfile     = document.getElementById('attachfile');
 const fileInput      = document.getElementById('hidden-file-input');
 const clearSelection = document.getElementById('clear-selection');
 
-attachfile.onclick = function(){
-  fileInput.click();
-}
-clearSelection.onclick = function(){
-  document.querySelector('.preview-media').classList.remove('media');
-  fileInput.value = "";
+if(attachfile != null){
+  attachfile.onclick = function(){
+    fileInput.click();
+  }
+  clearSelection.onclick = function(){
+    document.querySelector('.preview-media').classList.remove('media');
+    fileInput.value = "";
+  }
+  fileInput.onchange = function(){
+    document.querySelector('.preview-media').classList.add('media');
+    document.getElementById('prev-img').src = createObjectURL(this.files[0]);
+  }
 }
 function createObjectURL(object) {
   return (window.URL) ? window.URL.createObjectURL(object) : window.webkitURL.createObjectURL(object);
 }
-fileInput.onchange = function(){
-  document.querySelector('.preview-media').classList.add('media');
-  document.getElementById('prev-img').src = createObjectURL(this.files[0]);
-}
+
 shrinkConver.addEventListener('click',function(){
   this.classList.toggle("fa-arrow-right");
   this.classList.toggle("fa-arrow-left");
