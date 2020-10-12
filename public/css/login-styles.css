@@ -57,12 +57,21 @@ body{
   padding: 10px 20px;
   margin-bottom: 15px;
 }
+.login-container form a{
+  color: #666;
+  text-decoration: none;
+}
+.login-container form a:hover{
+  text-decoration: underline;
+}
 .login-container form input[type="submit"]{
   background-color: #0084ff;
   color: #fff;
   font-weight: 500;
   cursor: pointer;
   font-size: 18px;
+  margin-top: 10px;
+  display: block;
 }
 .error{
   color: var(--txt-color);

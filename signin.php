@@ -24,24 +24,24 @@
       header("Location: login.php");
       exit();
     }
-    if(isset($_POST['login'])){
+    if(isset($_POST['sigin'])){
       $username = filter_var($_POST['username'],FILTER_SANITIZE_STRING);
       $pwd = filter_var($_POST['password'],FILTER_SANITIZE_STRING);
-      $stmt= $con->prepare('SELECT * FROM users WHERE username=? AND password=?');
-      if($stmt->execute(array($username,sha1($pwd)))){
-        $id = $stmt->fetch();
+      $bio = filter_var($_POST['bio'],FILTER_SANITIZE_STRING);
+
+      $stmt= $con->prepare('SELECT * FROM users WHERE username=?');
+      if($stmt->execute(array($username))){
         if($stmt->rowCount() > 0){
-          $_SESSION['username'] = $username;
-          $_SESSION['userid'] = $id['id'];
-          $_SESSION['avatar'] = $id['avatar'];
-          header("Location: index.php");
-          exit();
+          echo "<div class='error'>User already exists</div>";
         }else{
-          echo "<div class='error'> Username or password is not valid </div>";
+          $stmt= $con->prepare('INSERT INTO users (username,password,bio) VALUES(?,?,?)');
+          if($stmt->execute(array($username,sha1($pwd),$bio))){
+            header("Location: login.php");
+            exit();
+          }else{
+            echo "<div class='error'> Something went wrong</div>";
+          }
         }
-      }else{
-        header("Location: login.php");
-        exit();
       }
     }
 ?>
@@ -51,9 +51,11 @@
       <label>Username :</label>
       <input type="text" placeholder="Username" name="username" autocomplete="off" required autofocus>
       <label>Password :</label>
-      <input type="password" placeholder="Password" name="password" required autocomplete="new-password">
-      <a href="signin.php">You don't have an account, sign in now !</a>
-      <input type="submit" value="Login" name="login">
+      <input type="password" placeholder="Password" name="password" pattern=".{8,}" title="Password must contain at least 8 characters" required autocomplete="new-password">
+      <label>Biography :</label>
+      <input type="text" placeholder="Tell your friends who are you" name="bio" required autocomplete="off">
+      <a href="login.php">You already have an account, login now !</a>
+      <input type="submit" value="Sign in" name="sigin">
     </form>
   </div>
   <script>

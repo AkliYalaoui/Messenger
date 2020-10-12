@@ -140,6 +140,11 @@ ul {
   display: block;
   width: 100%;
 }
+.no-friends{
+  text-align:center;
+  padding:10px;
+  color:var(--txt-color);
+}
 @media (max-width:420px){
   .friends-chatting footer form i:first-of-type{
     display: none;
@@ -186,9 +191,9 @@ ul {
   #shrink-conver{
     display: inline;
   }
-  /* .conversations .setting{
-    position: fixed;
-  } */
+  .no-friends{
+    display: none;
+  }
   .conversations{
     flex: unset;
   }
@@ -214,6 +219,9 @@ ul {
   .conversations.expand{
     flex: 1;
     min-width: 250px;
+  }
+  .conversations.expand .no-friends{
+    display: block;
   }
   .conversations.expand header h2{
     margin-top: 40px;

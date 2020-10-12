@@ -112,7 +112,7 @@
         </a>
         <?php endforeach; }
           else{
-            echo "<div style='text-align:center; padding:10px; color:var(--txt-color);'>You have not made any friends yet </div>";
+            echo "<div class='no-friends'>You have not made any friends yet </div>";
           }
           ?>
       </main>
