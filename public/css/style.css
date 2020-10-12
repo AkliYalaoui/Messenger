@@ -512,19 +512,51 @@ ul {
   left: 0;
   width: 100%;
   background-color: var(--bg-color);
-  display: flex;
-  align-items: center;
   padding: 10px;
   border-top: .5px solid var(--border-color);
 }
-
+.friends-chatting footer > div:not(.preview-media){
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
 .friends-chatting footer i {
   color: var(--icon-color);
   font-size: 20px;
   margin-right: 8px;
   cursor: pointer;
 }
-
+.friends-chatting footer .preview-media > span{
+  position: absolute;
+  top: 0px;
+  right: 10px;
+  color: var(--icon-color);
+  cursor: pointer;
+  font-size: 30px !important;
+  background-color: #fff;
+  height: 30px;
+  width: 30px;
+  display: block;
+  text-align: center;
+  line-height: 30px;
+}
+.friends-chatting footer .preview-media{
+  display: none;
+  justify-content: flex-end;
+  position: relative;
+  padding: 10px;
+}
+.friends-chatting footer .preview-media.media{
+  display: flex;
+}
+.friends-chatting footer .preview-media img,
+.friends-chatting footer .preview-media video{
+  border: 3px dashed var(--border-color);
+  outline: none;
+  width: 120px;
+  height: 120px;
+  padding: 4px;
+}
 .friends-chatting footer form {
   flex: 1;
   position: relative;

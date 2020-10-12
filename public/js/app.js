@@ -9,7 +9,24 @@ const logout         = document.getElementById('logout');
 const colors         = Array.from(document.querySelectorAll("#discussion-icons span"));
 const shrinkConver   = document.getElementById('shrink-conver');
 const conversations  = document.getElementById('conversations');
+const attachfile     = document.getElementById('attachfile');
+const fileInput      = document.getElementById('hidden-file-input');
+const clearSelection = document.getElementById('clear-selection');
 
+attachfile.onclick = function(){
+  fileInput.click();
+}
+clearSelection.onclick = function(){
+  document.querySelector('.preview-media').classList.remove('media');
+  fileInput.value = "";
+}
+function createObjectURL(object) {
+  return (window.URL) ? window.URL.createObjectURL(object) : window.webkitURL.createObjectURL(object);
+}
+fileInput.onchange = function(){
+  document.querySelector('.preview-media').classList.add('media');
+  document.getElementById('prev-img').src = createObjectURL(this.files[0]);
+}
 shrinkConver.addEventListener('click',function(){
   this.classList.toggle("fa-arrow-right");
   this.classList.toggle("fa-arrow-left");
@@ -87,6 +104,6 @@ if(closeSettings != null)
   closeSettings.addEventListener('click',_=> settings.classList.remove('open'));
 if(openSettings != null)
   openSettings.addEventListener('click',_=> {
-    conversations.classList.toggle('expand');
+    conversations.classList.add('expand');
     settings.classList.add('open');
   });

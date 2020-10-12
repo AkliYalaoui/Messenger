@@ -25,6 +25,7 @@
       $tmp["msg"]   = $msg["content"];
       $tmp["date"]  = $msg["send_at"];
       $tmp["love"]  = $msg["love"];
+      $tmp["media"]  = $msg["media"];
       $tmp["id"]    = $msg["id"];
       if($msg['from_id'] != $from){
         $tmp['class'] = "msg-me";

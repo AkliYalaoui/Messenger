@@ -180,16 +180,24 @@
         <div id="main-conversation" data-from="<?= $id ?>" data-to="<?= $_SESSION['userid'] ?>"></div>
       </main>
       <footer>
-        <i class="fas fa-plus-circle"></i>
-        <i class="fas fa-image"></i>
-        <i class="fas fa-sticky-note"></i>
-        <form action="backend/post.php" method="POST">
-          <input type="text" placeholder="Write a message" name="message" required>
-          <input type="hidden" value="<?= $id ?>" name="to_id">
-          <input type="submit" value="send" name="sendmsg">
-          <i class="fas fa-smile"></i>
-          <i class="fas fa-paper-plane"></i>
-        </form>
+        <div class="preview-media">
+          <span id="clear-selection">&times;</span>
+          <img id="prev-img">
+          <!-- <video id="prev-video"></video> -->
+        </div>
+        <div>
+          <i class="fas fa-plus-circle"></i>
+          <i id="attachfile" class="fas fa-image"></i>
+          <i class="fas fa-sticky-note"></i>
+          <form action="backend/post.php" method="POST" enctype="multipart/form-data">
+            <input type="text" placeholder="Write a message" name="message">
+            <input id="hidden-file-input" type="file" name="mediaAttached" style="display:none">
+            <input type="hidden" value="<?= $id ?>" name="to_id">
+            <input type="submit" value="send" name="sendmsg">
+            <i class="fas fa-smile"></i>
+            <i class="fas fa-paper-plane"></i>
+          </form>
+        </div>
       </footer>
       <?php
       }else{
